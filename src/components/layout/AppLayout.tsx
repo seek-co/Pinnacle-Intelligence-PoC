@@ -29,7 +29,7 @@ export function AppLayout() {
             <Sparkles className="h-5 w-5 text-zinc-950" />
           </div>
           <div>
-            <div className="text-sm font-semibold">Pinnacle Intelligence</div>
+            <div className="text-sm font-semibold">Underwriting IQ</div>
             <div className="text-xs text-zinc-500">SBA Underwriting Platform</div>
           </div>
         </div>
