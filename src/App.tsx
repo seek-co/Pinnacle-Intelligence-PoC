@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { ApplicationsProvider } from './context/ApplicationsContext'
 import { AppLayout } from './components/layout/AppLayout'
 import { DashboardPage } from './pages/DashboardPage'
 import { IntakePage } from './pages/IntakePage'
@@ -13,28 +14,32 @@ import { ReviewPage } from './pages/ReviewPage'
 import { MemoPage } from './pages/MemoPage'
 import { AuditPage } from './pages/AuditPage'
 import { AdminPage } from './pages/AdminPage'
+import { NewApplicationPage } from './pages/NewApplicationPage'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<AppLayout />}>
-          <Route index element={<DashboardPage />} />
-          <Route path="intake" element={<IntakePage />} />
-          <Route path="documents" element={<DocumentsPage />} />
-          <Route path="extraction" element={<ExtractionPage />} />
-          <Route path="spreading" element={<SpreadingPage />} />
-          <Route path="credit-analysis" element={<CreditAnalysisPage />} />
-          <Route path="policy" element={<PolicyPage />} />
-          <Route path="agents" element={<AgentsPage />} />
-          <Route path="risk" element={<RiskPage />} />
-          <Route path="review" element={<ReviewPage />} />
-          <Route path="memo" element={<MemoPage />} />
-          <Route path="audit" element={<AuditPage />} />
-          <Route path="admin" element={<AdminPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
+      <ApplicationsProvider>
+        <Routes>
+          <Route element={<AppLayout />}>
+            <Route index element={<DashboardPage />} />
+            <Route path="applications/new" element={<NewApplicationPage />} />
+            <Route path="intake" element={<IntakePage />} />
+            <Route path="documents" element={<DocumentsPage />} />
+            <Route path="extraction" element={<ExtractionPage />} />
+            <Route path="spreading" element={<SpreadingPage />} />
+            <Route path="credit-analysis" element={<CreditAnalysisPage />} />
+            <Route path="policy" element={<PolicyPage />} />
+            <Route path="agents" element={<AgentsPage />} />
+            <Route path="risk" element={<RiskPage />} />
+            <Route path="review" element={<ReviewPage />} />
+            <Route path="memo" element={<MemoPage />} />
+            <Route path="audit" element={<AuditPage />} />
+            <Route path="admin" element={<AdminPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </ApplicationsProvider>
     </BrowserRouter>
   )
 }

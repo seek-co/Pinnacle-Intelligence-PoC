@@ -1,12 +1,14 @@
 import { NavLink, Outlet } from 'react-router-dom'
 import { Menu, Sparkles } from 'lucide-react'
 import { useState } from 'react'
-import { ACTIVE_LOAN } from '../../data/mock'
+import { useApplications } from '../../context/ApplicationsContext'
 import { NAV_BY_SECTION } from './nav'
 import { Badge } from '../ui'
 
 export function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { activeApplication } = useApplications()
+  const loan = activeApplication
 
   return (
     <div className="flex min-h-dvh bg-zinc-950 text-zinc-100">
@@ -84,21 +86,21 @@ export function AppLayout() {
             </button>
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="font-mono text-xs text-cyan-300/90">
-                  {ACTIVE_LOAN.id}
-                </span>
-                <Badge tone="info">{ACTIVE_LOAN.stageLabel}</Badge>
+                <span className="font-mono text-xs text-cyan-300/90">{loan.id}</span>
+                <Badge tone="info">{loan.stageLabel}</Badge>
               </div>
-              <div className="mt-0.5 truncate text-sm font-semibold">
-                {ACTIVE_LOAN.borrower}
-              </div>
+              <div className="mt-0.5 truncate text-sm font-semibold">{loan.borrower}</div>
             </div>
             <div className="flex flex-wrap items-center gap-2 text-xs text-zinc-400">
-              <span>{ACTIVE_LOAN.program}</span>
+              <span>{loan.program}</span>
               <span className="text-zinc-600">•</span>
-              <span>${(ACTIVE_LOAN.requested / 1000).toFixed(0)}K</span>
+              <span>
+                {loan.requested
+                  ? `$${(loan.requested / 1000).toFixed(0)}K`
+                  : 'Amount TBD'}
+              </span>
               <span className="text-zinc-600">•</span>
-              <span>{ACTIVE_LOAN.assignee}</span>
+              <span>{loan.assignee}</span>
             </div>
           </div>
         </header>

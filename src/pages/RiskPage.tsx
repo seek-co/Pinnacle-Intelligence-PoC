@@ -1,7 +1,10 @@
-import { CONDITIONS, ACTIVE_LOAN, RISK_DRIVERS } from '../data/mock'
+import { CONDITIONS, RISK_DRIVERS } from '../data/mock'
+import { useApplications } from '../context/ApplicationsContext'
 import { Badge, Card, CardBody, PageHeader, StatCard } from '../components/ui'
 
 export function RiskPage() {
+  const { activeApplication: loan } = useApplications()
+
   return (
     <div className="mx-auto max-w-5xl space-y-6">
       <PageHeader
@@ -10,7 +13,7 @@ export function RiskPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-3">
-        <StatCard label="Risk grade" value={ACTIVE_LOAN.riskGrade} />
+        <StatCard label="Risk grade" value={loan.riskGrade} />
         <StatCard label="Recommendation" value="Approve w/ conditions" tone="good" />
         <StatCard label="Proposed DSCR" value="1.42x" tone="good" />
       </div>

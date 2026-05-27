@@ -9,7 +9,7 @@ import {
   ShieldCheck,
   Sparkles,
 } from 'lucide-react'
-import { ACTIVE_LOAN } from '../../data/mock'
+import { useApplications } from '../../context/ApplicationsContext'
 import { InfoField } from '../../components/ui'
 
 type Stage =
@@ -46,6 +46,7 @@ const DEFAULT_FILES: UploadedFile[] = [
 ]
 
 export function DocumentIntakePanel() {
+  const { activeApplication } = useApplications()
   const [stage, setStage] = useState<Stage>('idle')
   const [files, setFiles] = useState<UploadedFile[]>([])
   const [progress, setProgress] = useState(0)
@@ -226,8 +227,15 @@ export function DocumentIntakePanel() {
         </div>
 
         <div className="mt-4 grid grid-cols-2 gap-3">
-          <InfoField label="Borrower" value={ACTIVE_LOAN.borrower} />
-          <InfoField label="Request" value={`$${(ACTIVE_LOAN.requested / 1000).toFixed(0)}K ${ACTIVE_LOAN.program}`} />
+          <InfoField label="Borrower" value={activeApplication.borrower} />
+          <InfoField
+            label="Request"
+            value={
+              activeApplication.requested
+                ? `$${(activeApplication.requested / 1000).toFixed(0)}K ${activeApplication.program}`
+                : activeApplication.program
+            }
+          />
         </div>
       </section>
 

@@ -13,6 +13,7 @@ import {
   Sparkles,
   UserCheck,
   FilePlus2,
+  Plus,
 } from 'lucide-react'
 
 export type NavItem = {
@@ -24,6 +25,7 @@ export type NavItem = {
 
 export const NAV: NavItem[] = [
   { label: 'Pipeline', path: '/', icon: LayoutDashboard, section: 'Workflow' },
+  { label: 'New application', path: '/applications/new', icon: Plus, section: 'Workflow' },
   { label: 'Loan intake', path: '/intake', icon: FilePlus2, section: 'Workflow' },
   { label: 'Documents', path: '/documents', icon: FolderOpen, section: 'Underwriting' },
   { label: 'Extraction review', path: '/extraction', icon: ScanSearch, section: 'Underwriting' },
