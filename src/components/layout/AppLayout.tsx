@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { Menu, Sparkles } from 'lucide-react'
 import { useState } from 'react'
 import { useApplications } from '../../context/ApplicationsContext'
@@ -9,7 +9,7 @@ export function AppLayout() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const { activeApplication } = useApplications()
   const loan = activeApplication
-
+  const navigate = useNavigate()
   return (
     <div className="flex min-h-dvh bg-zinc-950 text-zinc-100">
       {mobileOpen && (
@@ -27,7 +27,7 @@ export function AppLayout() {
         ].join(' ')}
       >
         <div className="flex items-center gap-3 border-b border-white/10 px-5 py-5">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-violet-500/80 to-cyan-400/70">
+          <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-violet-500/80 to-cyan-400/70 cursor-pointer" onClick={() => navigate('/')}>
             <Sparkles className="h-5 w-5 text-zinc-950" />
           </div>
           <div>
